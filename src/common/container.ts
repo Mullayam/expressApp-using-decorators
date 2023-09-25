@@ -73,8 +73,9 @@ export class Container {
     }
 
     const resolvedDeps = [] as unknown[];
-
-    for (const [index, dep] of provider.deps.entries()) {
+const deps = provider.deps.entries()
+    for (const data of deps) {
+      const  [index, dep] = data;
       if (!dep.id) {
         throw new InvalidDependencyError(provider.type ?? injectable, provider.deps, index);
       }

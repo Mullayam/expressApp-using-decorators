@@ -61,7 +61,7 @@ export interface MethodMeta {
 export interface ExpressMeta {
   url: string;
 
-  routerOptions?: RouterOptions;
+  routerOptions?: RouterOptions | null;
 
   routes: {
     [instanceMethodName: string]: MethodMeta;

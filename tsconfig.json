@@ -6,22 +6,17 @@
     "experimentalDecorators": true,
     "inlineSourceMap": true,
     "inlineSources": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "target": "ES2020",
+    "moduleResolution": "NodeNext",
     "noEmitOnError": true,
     "noImplicitAny": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "outDir": "./lib",
-    "pretty": true,
-    "rootDir": ".",
-    "target": "ES2017",
-    "paths": {
-      "@air/app": ["./src/app/index.js"],
-      "@air/common": ["./src/common/index.js"]
-  }
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "outDir": "lib"
   },
-  "include": [
-    "./index.ts","src"
-  ]
+  "include": ["src", "standalone", "app"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }

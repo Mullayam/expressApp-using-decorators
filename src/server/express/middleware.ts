@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler, ErrorRequestHandler } from 'express';
-import { InjectionToken } from '../common';
+import { InjectionToken } from '../../common';
 
 import { Container } from './container';
 import { Type } from './types';
