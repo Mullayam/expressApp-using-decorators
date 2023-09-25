@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./lib",
+    "pretty": true,
+    "rootDir": ".",
+    "target": "ES2017",
+    "paths": {
+      "@air/app": ["./src/app/index.js"],
+      "@air/common": ["./src/common/index.js"]
+  }
+  },
+  "include": [
+    "./index.ts","src"
+  ]
+}

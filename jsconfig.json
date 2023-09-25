@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "paths": {
+            "@air/app": ["./src/app"],
+            "@air/common": ["./src/common"]
+        }
+    }
+}
