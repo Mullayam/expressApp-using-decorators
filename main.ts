@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { AppModule } from "./app.module";
-import { Application } from "../src";
-import { HttpModule } from "../src/server/http";
+import { Application } from "./src";
+import { HttpModule } from "./src/server/http";
 import { json } from 'body-parser';
 async function bootstrap() {
     const app = await Application.create(AppModule);
