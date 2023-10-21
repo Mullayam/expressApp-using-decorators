@@ -1,4 +1,4 @@
-import { Injectable } from "../common";
+import { Injectable } from "src/modules/common";
 
 @Injectable()
 export class DataProvider {

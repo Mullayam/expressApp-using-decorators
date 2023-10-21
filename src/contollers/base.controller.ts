@@ -1,13 +1,21 @@
-import { Controller, Get } from '../app'
-import { DataProvider } from '../services';
+import { Exception } from '@enjoys/exception';
+import { Test } from 'src/middlewares';
+import { Controller, Get } from 'src/modules//app'
+import { DataProvider } from 'src/services';
 
-@Controller('/')
+@Controller('/',)
 export class BaseController {
   constructor(private dataProvider: DataProvider) { }
 
 
-  @Get('/')
+  @Get('/',[Test])
   index() {
+    throw new Error('Not implemented');
+    return this.dataProvider.data();
+  }
+  @Get('/test')
+  test() {
+   
     return this.dataProvider.data();
   }
 

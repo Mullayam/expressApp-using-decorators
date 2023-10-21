@@ -1,15 +1,13 @@
-import { Injectable } from "../common";
-import { Request, Response, NextFunction } from "express"; 
-import { ErrorMiddleware } from '../app'
- 
+import { Injectable } from "src/modules/common";
+import { Request, Response, NextFunction } from "express";
+import { ErrorMiddleware } from 'src/modules/app'
+import { Exception } from '@enjoys/exception';
 @Injectable()
-export class Middleware implements ErrorMiddleware {
-
-  constructor() {}
-
+export class ServerErrorHandler implements ErrorMiddleware { 
   use(error: Error, _request: Request, response: Response, next: NextFunction) {
-    console.log("Middleware Called");
-
-    next(error);
+    if (error)  {     
+       return Exception.HttpException.ExceptionHandler(error, _request, response, next);
+    }
+    next()
   }
 }

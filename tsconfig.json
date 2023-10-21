@@ -1,27 +1,27 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "declaration": true,
+    "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
     "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noImplicitAny": false,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    "outDir": "./lib",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,    
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./build",
     "pretty": true,
     "rootDir": ".",
     "target": "ES2017",
+    "baseUrl": ".",
     "paths": {
-      "@air/app": ["./src/app/index.js"],
-      "@air/common": ["./src/common/index.js"]
-  }
+      "@": ["./src/*"],
+    }
   },
-  "include": [
-    "./index.ts","src"
-  ]
+  "include": ["./index.ts", "./src/**/*.ts"],
+  "exclude": ["./node_modules","build","**/*.spec.ts"],
 }
