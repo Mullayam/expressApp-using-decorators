@@ -3,10 +3,10 @@ import { Request, Response, NextFunction } from "express"
 import { Middleware} from "src/modules/app";
 
 @Injectable() 
-export class Test implements Middleware {
+export class TestMiddleware implements Middleware {
   constructor() {}
   use(_request: Request, response: Response, next: NextFunction) {
-    console.log("Middleware Called");
+    console.log('Test Middleware')
     next();
   }
 }

@@ -1,5 +1,4 @@
-import { Exception } from '@enjoys/exception';
-import { Test } from 'src/middlewares';
+import { TestMiddleware } from 'src/middlewares';
 import { Controller, Get } from 'src/modules//app'
 import { DataProvider } from 'src/services';
 
@@ -7,15 +6,12 @@ import { DataProvider } from 'src/services';
 export class BaseController {
   constructor(private dataProvider: DataProvider) { }
 
-
-  @Get('/',[Test])
-  index() {
-    throw new Error('Not implemented');
+  @Get('/',[TestMiddleware])
+  index() {     
     return this.dataProvider.data();
   }
   @Get('/test')
-  test() {
-   
+  test() {   
     return this.dataProvider.data();
   }
 
