@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { Container, attachControllers, ERROR_MIDDLEWARE, } from 'src/modules/app';
+import { Container, attachControllers, ERROR_MIDDLEWARE } from 'src/modules/app';
 import { Controllers } from 'src/contollers';
 import { getInjectables } from './modules/common/decorators/injectable';
 import morgan from 'morgan';
@@ -12,7 +12,7 @@ export class AppServer {
 
     private LoadConfig() {
         app.use(express.json())
-        .use(morgan('dev'));
+            .use(morgan('dev'));
         this.InitializeControllers()
     }
     private async InitializeControllers() {
