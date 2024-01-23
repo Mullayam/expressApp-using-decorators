@@ -15,6 +15,6 @@ export class FilesMapper {
             .map((file) => require(`${__workingDir}\\${file}`).default as any)
     }
     static Mapper(AppServer: Application) {
-        listEndpoints(AppServer)        
+        return listEndpoints(AppServer)        
     }
 }

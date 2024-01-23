@@ -1,4 +1,6 @@
 import bcrypt from "bcryptjs";
+import type { Request, Response, NextFunction } from "express";
+
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
 import jwt from 'jsonwebtoken'
@@ -8,14 +10,16 @@ export let Tokens = new Map();
 export let BlacklistedTokens: string[] = [];
 import { APP_CONFIG } from "@/config/site-config";
 
+
 class Helpers {
-     /**
-     * Generates a token of random bytes with the specified byte length.
-     *
-     * @param {number} byteLength - The length of the token in bytes. Defaults to 48.
-     * @return {string} - The generated token as a base64-encoded string.
-     */
-     generateToken(byteLength: number = 48): string {
+  
+    /**
+    * Generates a token of random bytes with the specified byte length.
+    *
+    * @param {number} byteLength - The length of the token in bytes. Defaults to 48.
+    * @return {string} - The generated token as a base64-encoded string.
+    */
+    generateToken(byteLength: number = 48): string {
         return crypto.randomBytes(byteLength).toString("base64")
     }
     /**
@@ -53,10 +57,10 @@ class Helpers {
      *  
      * @return {number} The converted number.
      */
-    CreateOTP(min:number=100000, max:number=999999): number {
-        return  Math.floor(
+    CreateOTP(min: number = 100000, max: number = 999999): number {
+        return Math.floor(
             Math.random() * (max - min + 1) + min
-          )
+        )
 
     }
     /**
@@ -173,7 +177,7 @@ class Helpers {
         return bcrypt.compareSync(Password, HashedPassword);
     }
     signJWT(payload: any): string {
-         
+
         return jwt.sign(payload, APP_CONFIG.SECRETS.JWT_SECRET_KEY, {
             expiresIn: '7d'
         });

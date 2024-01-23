@@ -29,6 +29,7 @@
   },
   "description": "express app using decorators",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "4.17.8",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/winston": "^2.4.4",

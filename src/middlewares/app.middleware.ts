@@ -37,18 +37,5 @@ export default class AppMiddleware {
     }
 
   }
-  /**
-   * Sets the X-Request-Id and X-Platform headers in the request and response objects.
-   *
-   * @param {Request} req - The request object.
-   * @param {Response} res - The response object.
-   * @param {NextFunction} next - The next function in the middleware chain.
-   */
-  public static IRequestHeaders(req: Request, res: Response, next: NextFunction) {
-    const requestId = Helpers.RequestId();
-    req.headers['X-Request-Id'] = requestId;
-    res.setHeader('X-Request-Id', requestId);
-    res.setHeader('X-Platform', "Cozinco Innovations");
-    next();
-  }
+    
 }

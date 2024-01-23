@@ -14,8 +14,9 @@ import { Logger } from './modules/app/core/logger';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser'
 import { SessionHandler } from '@/modules/app/core/session';
-import { Exception } from '@enjoys/exception';
 import {InitConnection} from '@/database/init-connection'
+import { Modifiers } from './modules/app/core/modifiers';
+import AppMiddleware from './middlewares/app.middleware';
 const app: Application = express()
 
 export class AppServer {
@@ -28,8 +29,7 @@ export class AppServer {
         this.ApplyConfiguration()       
         this.InitMiddlewares()
         this.LoadInterceptors();
-        this.InitializeControllers()
-        FilesMapper.Mapper(app);
+        this.InitializeControllers()       
         this.GracefulShutdown()
     }
     /**
@@ -48,14 +48,14 @@ export class AppServer {
         app.use(bodyParser.json());
         app.use(SessionHandler.forRoot());
         app.use(bodyParser.urlencoded({ extended: false }));
+        app.use(Modifiers.IRequestHeaders)
     }
     /**
      * Initializes the controllers by registering dependencies and attaching them to the app.
      *
      * @return {Promise<void>} A promise that resolves once the controllers are initialized.
      */
-    private async InitializeControllers() {
-      
+    private async InitializeControllers() {      
         this.RegisterDependencies()
         await attachControllers(app, Controllers);
     }
@@ -73,13 +73,14 @@ export class AppServer {
     }
     private InitMiddlewares() {
         if (APP_CONFIG.NODE_ENV === 'PRODUCTION') {
-            //  app.use(AppMiddlewares.IRequestHeaders)
-            // app.use(AppMiddlewares.isApiProtected)
+            app.use(AppMiddleware.isApiProtected)
+            app.use(AppMiddleware.isApiProtected)
         }
     }
     private RegisterDependencies() {
         //  DO NOT EDIT THIS CONFIG UNTILL YOU KNOW WHAT IS THIS DOING
         const injectables = getInjectables()
+       
         const t = [...injectables].map((Injectable: any) => {
             if (((Injectable.name).toLowerCase()).endsWith("errorhandler") || ((Injectable.name).toLowerCase()).endsWith("errorhandlers")) {
                 return {
@@ -93,16 +94,14 @@ export class AppServer {
             }
         })
 
-        Container.provide(t);
-        
-        
+        Container.provide(t);            
+        FilesMapper.Mapper(app)
     }
-    private static async start() {
-        
+    private static async start() {        
         try {
              
             // await InitConnection()  // uncoment this when use of database
-            const server = http.createServer(app).listen(AppServer.PORT, () => {
+            const server = http.createServer(app).listen(AppServer.PORT, () => {               
                 console.log(process.pid, blue(`Standalone Express Server listening on port http://localhost:${AppServer.PORT}`),)
             })
             server.on('close', () => {
