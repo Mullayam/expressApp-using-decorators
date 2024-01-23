@@ -3,7 +3,7 @@ import { Controller, Get } from 'src/modules//app'
 import { DataProvider } from 'src/services';
 
 @Controller('/',)
-export class BaseController {
+export default class BaseController {
   constructor(private dataProvider: DataProvider) { }
 
   @Get('/',[TestMiddleware])

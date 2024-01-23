@@ -17,7 +17,7 @@ export class Cors {
      */
     private static options(): CorsOptions {
         return {
-            origin: '*',             
+            origin: '*',                         
         }
     }
 }

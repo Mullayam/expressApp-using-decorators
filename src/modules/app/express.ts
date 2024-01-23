@@ -74,9 +74,9 @@ async function registerController(
       ]);
     });
   }
-
+  
   (app as Router).use(meta.url, router);
-
+  
   return app;
 }
 

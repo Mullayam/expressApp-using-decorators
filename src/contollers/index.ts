@@ -1,2 +1,3 @@
-import { BaseController } from './base.controller'
-export const Controllers = [BaseController]  
+import { FilesMapper } from '@/modules/app/core/files-mapper' 
+const controllers =  FilesMapper.forFeature("./src/contollers","controller")  
+export const Controllers = [...controllers]  
